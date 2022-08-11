@@ -63,10 +63,12 @@ export default {
         //strategy "admin"
         admin: {
           scheme: 'local',
-          token: {
-            property: 'token',
-            required: true,
-            type: 'Bearer'
+          cookie: {
+            token: {
+              property: 'data.access_token',
+              required: true,
+              type: 'Bearer'
+            }
           },
           user: {
             property: 'user',
@@ -74,16 +76,16 @@ export default {
           },
           endpoints: {
             login: {
-              url: '/admin/login',
+              url: '/auth/login',
               method: 'post',
-              propertyName: 'token'
+              propertyName: 'data.access_token'
             },
             logout: {
               url: '/admin/logout',
               method: 'post'
             },
             user: {
-              url: '/admin/credential',
+              url: '/user/profile',
               method: 'get',
               propertyName: 'user'
             }
@@ -125,7 +127,8 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'http://localhost:8183/api'
+    // baseURL: 'http://localhost:8183/api'
+    baseURL: 'https://api-ppmbl.trivamas-project.my.id/api/v1'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
